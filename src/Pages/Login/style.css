@@ -1,0 +1,10 @@
+.bboxxImage{
+  border-radius: 50%;
+}
+.bboxxLogin{
+  background-image: url("./back.webp"); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width:100%;
+}
