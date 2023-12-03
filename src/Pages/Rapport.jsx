@@ -1,14 +1,15 @@
 import React from "react";
 import { Button } from "@mui/material";
-import { FileCopy, Search } from "@mui/icons-material";
+import { Search } from "@mui/icons-material";
 import axios from "axios";
 import { lien } from "../static/Lien";
-import { exportToExcel } from "react-json-to-excel";
+import ExcelButton from "../static/ExcelButton";
 
 function Rapport() {
   const [dates, setDates] = React.useState({ debut: "", fin: "" });
   const [donnerFound, setDonnerFound] = React.useState();
   const [samplejson2, setSample] = React.useState();
+  const [nomFile, setNomFile] = React.useState("")
   const generateNomFile = () => {
     if (dates.debut !== "" && dates.fin !== "") {
       let date1 = new Date(dates.debut);
@@ -54,15 +55,18 @@ function Rapport() {
       debut: dates.debut,
       fin: dates.fin,
     };
+    const adresse =(id)=>{
+      return `${id.province} ; ${id.country}; ${id.sector}; ${id.cell}; ${id.reference}`
+
+    }
     axios.post(lien + "/rapport", data).then((response) => {
-      console.log(response.data)
+   
       if (response.data.error) {
         alert(response.data.message);
       } else {
         setDonnerFound(response.data);
         const donner = [];
         for (let i = 0; i < response.data.length; i++) {
-        
           donner.push({
             ID: response.data[i].codeClient,
             'NOMS': response.data[i].nomClient,
@@ -91,14 +95,16 @@ function Rapport() {
             ALTITUDE: response.data[i].demande.coordonnes.altitude,
             "ETAT PHYSIQUE": response.data[i].demande.statut,
             'RAISON DE NON PAYEMENT ': response.data[i].demande.raison,
-            'ADRESSES': response.data[i].demande.adresse,
+            'SAT': response.data[i].demande.sat,
+            'ADRESSES': adresse(response.data[i].demande),
+            
           });
         }
         setSample(donner);
+        setNomFile(generateNomFile())
       }
     });
   };
-
   return (
     <React.Fragment>
       <div
@@ -143,15 +149,7 @@ function Rapport() {
         >
           <Search fontSize="small" /> Valider
         </Button>
-        <Button
-          color="success"
-          sx={{ marginLeft: "5px" }}
-          variant="contained"
-          onClick={() => exportToExcel(samplejson2, generateNomFile())}
-        >
-          <FileCopy fontSize="small" />{" "}
-          <span className="ml-2">Export to Excel</span>
-        </Button>
+        <ExcelButton data={samplejson2} title="Export to Excel" fileName={`${nomFile}.xlsx`}/>
       </div>
       <div>
         <p>Data</p>

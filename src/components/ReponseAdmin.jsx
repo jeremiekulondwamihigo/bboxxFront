@@ -5,7 +5,7 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 // import { PostDemandeFunction, ReadDemande } from "../Redux/Demande";
 import { CreateContexte } from '../Context'
 import './style.css'
-import { Add, Clear, Edit, Remove } from '@mui/icons-material'
+import { Add, Clear, Remove } from '@mui/icons-material'
 
 import UpdateDemandeDetail from './UpdateDemandeDetail'
 import Popup from '../static/Popup'
@@ -40,6 +40,72 @@ function ReponseAdmin(props) {
       component: <FeedbackComponent demande={demande} update={update} />,
     },
   ]
+
+  function AfficherJsx({ demandes }) {
+    return (
+      <div style={{ textAlign: 'justify' }}>
+        <p>
+          {demandes.codeAgent && (
+            <span onClick={(e) => loading('codeAgent', demandes._id, e)}>
+              <span style={style.span}>Code Agent : </span>
+              {demandes.codeAgent}
+            </span>
+          )}
+          {demandes.codeClient && (
+            <span onClick={(e) => loading('codeClient', demandes._id, e)}>
+              <span style={style.span}>Code Client : </span>
+              {demandes.codeclient}
+            </span>
+          )}
+        </p>
+
+        <br />
+        <p style={{ cursor: 'pointer' }}>
+          <span onClick={(e) => loading('province', demandes._id, e)}>
+            <span style={style.span}>Province : </span>
+            {demandes.province}
+          </span>
+
+          <span onClick={(e) => loading('country', demandes._id, e)}>
+            <span style={style.span}>country : </span>
+            {demandes.country}
+          </span>
+
+          <span onClick={(e) => loading('sector', demandes._id, e)}>
+            <span style={style.span}>Sector : </span>
+            {demandes.sector}
+          </span>
+
+          <span onClick={(e) => loading('cell', demandes._id, e)}>
+            <span style={style.span}>Cell : </span>
+            {demandes.cell}
+          </span>
+
+          <span onClick={(e) => loading('reference', demandes._id, e)}>
+            <span style={style.span}>Référence : </span>
+            {demandes.reference}
+          </span>
+
+          <span onClick={(e) => loading('sat', demandes._id, e)}>
+            <span style={style.span}>Sat : </span>
+            {demandes.reference}
+          </span>
+        </p>
+        <p>
+          <span onClick={(e) => loading('statut', demandes._id, e)}>
+            <span style={style.span}>Statut du client</span>{' '}
+            {`${demandes.statut === 'allumer' ? 'allumé' : 'éteint'}`}{' '}
+          </span>
+          {demandes.raison && (
+            <span onClick={(e) => loading('raison', demandes._id, e)}>
+              <span style={style.span}>Raison</span>
+              {demandes.raison}
+            </span>
+          )}
+        </p>
+      </div>
+    )
+  }
 
   return (
     <div className="container">
@@ -76,63 +142,8 @@ function ReponseAdmin(props) {
                   </React.Fragment>
                 )}
               </TransformWrapper>
-              {demande && !update && (
-                <div style={{ textAlign: 'justify' }}>
-                  <p>
-                    {' '}
-                    {demande.codeclient &&
-                      `code client : ${demande.codeclient};`}{' '}
-                    <span
-                      onClick={(e) => loading('codeClient', demande._id, e)}
-                    >
-                      <Edit fontSize="small" />
-                    </span>
-                  </p>
-                  {demande.codeAgent &&
-                    `code demandeur : ${demande.codeAgent};`}
-                  <br />
-                  <p>
-                    {' '}
-                    {demande.adresse && `Adresse : ${demande.adresse}`}
-                    <span onClick={(e) => loading('adresse', demande._id, e)}>
-                      <Edit fontSize="small" />
-                    </span>
-                  </p>
-                  <p>
-                    {`Statut du client : ${
-                      demande.statut === 'allumer' ? 'allumé' : 'éteint'
-                    }`}{' '}
-                    <span onClick={(e) => loading('statut', demande._id, e)}>
-                      <Edit fontSize="small" />
-                    </span>
-                  </p>
-
-                  <p>
-                    {demande.raison && `Raison : ${demande.raison}`}{' '}
-                    <span onClick={(e) => loading('raison', demande._id, e)}>
-                      <Edit fontSize="small" />
-                    </span>{' '}
-                  </p>
-                </div>
-              )}
-              {update && (
-                <div style={{ textAlign: 'justify' }}>
-                  {update.demande.codeclient &&
-                    `code client : ${update.demande.codeclient};`}{' '}
-                  <br />
-                  {update.demande.codeAgent &&
-                    `code demandeur : ${update.demande.codeAgent};`}
-                  <br />
-                  {update.demande.adresse &&
-                    `Adresse : ${update.demande.adresse}`}{' '}
-                  <br />
-                  {`Statut du client : ${
-                    update.demande.statut === 'allumer' ? 'allumé' : 'éteint'
-                  }`}{' '}
-                  <br />
-                  {update.demande.raison && `Raison : ${update.demande.raison}`}
-                </div>
-              )}
+              {demande && !update && <AfficherJsx demandes={demande} />}
+              {update && <AfficherJsx demandes={update.demande} />}
             </>
           )}
         </div>
@@ -147,6 +158,14 @@ function ReponseAdmin(props) {
       )}
     </div>
   )
+}
+const style = {
+  span: {
+    color: '#0078',
+    fontWeight: 'bold',
+    marginRight: '5px',
+    marginLeft: '5px',
+  },
 }
 
 // eslint-disable-next-line react-refresh/only-export-components

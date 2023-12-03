@@ -3,7 +3,7 @@
 import { Card } from 'react-bootstrap'
 import './style.css'
 import React, { useContext } from 'react'
-import { lien, lien_image } from '../static/Lien'
+import { lien } from '../static/Lien'
 import moment from 'moment'
 import { CreateContexte } from '../Context'
 import axios from 'axios'
@@ -51,11 +51,6 @@ function DemandeListe() {
                     key={cle}
                   >
                     <div className="allP">
-                      <img
-                        src={`${lien_image}/${e.file}`}
-                        alt={e.file}
-                        className="alignRight"
-                      />
                       <p
                         className={
                           e.concerne === ''
@@ -67,12 +62,12 @@ function DemandeListe() {
                         }
                       >
                         {' '}
-                        ID : {e.idDemande};{' '}
+                        {e.idDemande};{' '}
                       </p>
                       {e.codeClient && <p>Code client : {e.codeClient}</p>}{' '}
                       <p> statut : {e.statut}</p>
                       {e.raison && <p>{e.raison}</p>}
-                      <p>adresse : {e.adresse}</p>
+                      <p>adresse : {e.sat}</p>
                       <p className="alignLeft">
                         {moment(e.createdAt).fromNow()}
                       </p>

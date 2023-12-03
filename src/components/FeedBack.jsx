@@ -10,8 +10,8 @@ function FeedbackComponent({demande, update}){
 
     const loadingMesage =async()=>{
         if(demande || update){
-          let id = demande ? demande._id : update.demande._id
-          const reponse = await axios.get(`${lien}/reclamation/${id}`)
+          let id = demande ? demande.codeAgent : update.demande.codeAgent
+          const reponse = await axios.get(`${lien}/message/${id}`)
           setDataReclammer(reponse.data.conversation)
         }
       }
@@ -24,9 +24,10 @@ function FeedbackComponent({demande, update}){
       if (update && e.keyCode === 13) {
         setReclamation("");
         const data = {
-          idDemande: update.demande.idDemande,
+          code: update.demande._id,
           message: reclamation,
           sender: "co",
+          codeAgent : update.demande.codeAgent
         };
         axios
           .post(lien + "/reclamation", data)
@@ -40,9 +41,10 @@ function FeedbackComponent({demande, update}){
       if (demande && e.keyCode === 13) {
         setReclamation("");
         const data = {
-          idDemande: demande.idDemande,
+          code: demande._id,
           message: reclamation,
           sender: "co",
+          codeAgent : demande.codeAgent
         };
         axios
           .post(lien + "/reclamation", data)

@@ -149,25 +149,19 @@ function Acceuil() {
             </div>
           </div>
           <div className="flex-grow flex overflow-x-hidden">
-            <div className=" p-2">
+            <div className="p-2" style={{width:'15rem'}}>
               <DemandeListe />
             </div>
-            <div className=" flex-grow bg-white dark:bg-gray-900 overflow-y-auto">
-              <div className="sm:p-7 p-1">
-                <div className="container-fluid">
-                  <div className="row">
-                    <div className="col-lg-12">
-                      {element === 5 && <Parametre />}
-                      {element === 6 && <Rapport />}
-                      {element === 7 && <Deja />}
-                      {element === 8 && <Region />}
-                      {element === 9 && <MessageListe />}
-                      {element === 10 && <AgentListe />}
-                      {element === 11 && <Statistiques />}
-                      {demande && <ReponseAdmin />}
-                    </div>
-                  </div>
-                </div>
+            <div className="flex-grow bg-white dark:bg-gray-900 overflow-y-auto p-3">
+              <div>
+                {element === 5 && <Parametre />}
+                {element === 6 && <Rapport />}
+                {element === 7 && <Deja />}
+                {element === 8 && <Region />}
+                {element === 9 && <MessageListe />}
+                {element === 10 && <AgentListe />}
+                {element === 11 && <Statistiques />}
+                {demande && <ReponseAdmin />}
               </div>
             </div>
           </div>
