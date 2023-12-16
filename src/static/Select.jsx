@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import * as React from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 function Selected(props) {
   const { label, data, value, setValue } = props;
@@ -32,7 +32,7 @@ function Selected(props) {
     return list;
   }
   return (
-    <FormControl sx={{ width: "100%" }}>
+    <FormControl sx={{ width: '100%' }}>
       <InputLabel id="demo-controlled-open-select-label">{label}</InputLabel>
       <Select
         labelId="demo-controlled-open-select-label"

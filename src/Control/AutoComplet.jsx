@@ -1,23 +1,22 @@
 /* eslint-disable react/prop-types */
-import TextField from "@mui/material/TextField";
-import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import TextField from '@mui/material/TextField';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 
 const filter = createFilterOptions();
 
-function AutoComplement({value, setValue, options, title, propr}) {
-
+function AutoComplement({ value, setValue, options, title, propr }) {
   return (
     <Autocomplete
       value={value}
       onChange={(event, newValue) => {
-        if (typeof newValue === "string") {
+        if (typeof newValue === 'string') {
           setValue({
-            title: newValue,
+            title: newValue
           });
         } else if (newValue && newValue.inputValue) {
           // Create a new value from the user input
           setValue({
-            title: newValue.inputValue,
+            title: newValue.inputValue
           });
         } else {
           setValue(newValue);
@@ -37,7 +36,7 @@ function AutoComplement({value, setValue, options, title, propr}) {
       options={options}
       getOptionLabel={(option) => {
         // Value selected with enter, right from the input
-        if (typeof option === "string") {
+        if (typeof option === 'string') {
           return option;
         }
         // Add "xxx" option created dynamically
@@ -45,14 +44,12 @@ function AutoComplement({value, setValue, options, title, propr}) {
           return option.inputValue;
         }
         // Regular option
-        return option["" + propr];
+        return option['' + propr];
       }}
-      renderOption={(props, option) => <li {...props}>{option["" + propr]}</li>}
-      sx={{ width: "100%" }}
+      renderOption={(props, option) => <li {...props}>{option['' + propr]}</li>}
+      sx={{ width: '100%' }}
       freeSolo
-      renderInput={(params) => (
-        <TextField {...params} label={title || "Titre"} />
-      )}
+      renderInput={(params) => <TextField {...params} label={title || 'Titre'} />}
     />
   );
 }

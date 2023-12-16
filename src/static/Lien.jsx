@@ -2,9 +2,9 @@
 
 import axios from "axios";
 
+// export const lien = "http://192.168.1.98:5000/bboxx/support";
 export const lien = "http://localhost:5000/bboxx/support";
-// export const lien = "http://localhost:5000/bboxx/support";
-export const lien_image = "http://localhost:5000/bboxx/image";
+export const lien_image = "http://192.168.1.98:5000/bboxx/image";
 export const config = {
   headers: {
     "Content-Type": "Application/json",

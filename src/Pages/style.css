@@ -1,76 +1,20 @@
 :root {
-  --color-primary: #7380ec;
-  --color-danger: #ff7782;
-  --color-success: #41f1b6;
-  --color-warning: #ffbb55;
-  --color-white: #fff;
-  --color-info-dark: #7d8da1;
-  --color-info-light: #dce1eb;
-  --color-dark: #363949;
   --color-light: rgba(132, 139, 200, 0.18);
-  --color-primary-variant: #111e88;
-  --color-dark-variant: #677483;
-  --color-background: #f6f6f9;
-
+  --color-white: #fff;
   --card-border-radius: 2rem;
-  --border-radius-1: 0.4rem;
-  --border-radius-2: 0.8rem;
-  --border-radius-3: 1.2rem;
-
   --card-padding: 1.8rem;
-  --padding-1: 1.2rem;
-
   --box-shadow: 0 2rem 3rem var(--color-light);
-}
-.message{
-  background-color: rgba(122, 119, 165, 0.1);
-}
+  --color-dark-variant: #677483;
 
-.messageSecond::-webkit-scrollbar {
-  width: 5px;
-  margin-left: 5px;
-}
-.messageSecond::-webkit-scrollbar-track {
-  background: #c9cacc;
-}
-.messageSecond::-webkit-scrollbar-thumb {
-  background: #3d5585;
-  border-radius: 10px;
-}
-.messageSecond::-webkit-scrollbar-thumb:hover {
-  background: #01143b;
-}
-
-.messageTitle{
-  display: flex;
-  background-color: #dedede;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-.content{
-  width: 70%;
-}
-.content >p{
-  padding: 0;
-  margin: 0;
-}
-.contentImage >img{
-  width: 80px;
-  height: 45px;
-  float: right;
-  border-radius: 10px;
-}
-.imageNonReponse >img{
-  height: 140px;
 }
 table {
   background: var(--color-white);
   width: 100%;
-  border: 1px solid black;
+  border-radius: var(--card-border-radius);
   padding: var(--card-padding);
   text-align: center;
   box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
 }
 
 table:hover {
@@ -78,28 +22,10 @@ table:hover {
 }
 
 table tbody td {
-  height: 1.5rem;
-  
-  border: 1px solid black;
+  height: 2.8rem;
   border-bottom: 1px solid var(--color-light);
   color: var(--color-dark-variant);
 }
 table tbody tr:last-child td {
   border: none;
-  border: 1px solid black;
-}
-.nom{
-  background-color: rgb(98, 87, 110);
-  color: white;
-  font-weight: bold;
-}
-.statDemande{
-  background-color: rgb(61, 61, 109);
-  color :white;
-  text-align: center;
-  border-radius: 30px;
-  margin-bottom: 15px;
-  padding-top: 5px;
-  font-weight: bolder;
-
 }
